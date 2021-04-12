@@ -1,0 +1,56 @@
+#p1{
+    width:  380px;
+    height: 380px;
+    object-fit: cover;
+}
+#p2{
+    width:  380px;
+    height: 380px;
+    object-fit: cover;
+}
+#p3{
+    width:  380px;
+    height: 380px;
+    object-fit: cover;
+}
+body{
+    background-image: url('/imgs/background.jpeg');
+    margin: 2%;
+}
+main p {
+    font-size: larger;
+    font-family: cursive;
+    text-align: center;
+    color: ghostwhite;
+}
+#imags{
+    text-align: center;
+    float: right;
+    width: 50%;
+}
+main ul li {
+    /*display: inline;*/
+    /*background-color: rgb(116, 192, 240);*/
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(51, 224, 255);
+}
+main ul {
+    float: left;
+    margin-top: 2%;
+}
+footer{
+    color:rgb(2, 2, 117);
+    background-color: rgb(152, 236, 251);
+    text-align: center;
+    margin-top: 45%;
+   height: 25%;
+
+}
+button {
+    width: 3cm;
+    height:1.5cm ;
+    font-weight: bold;
+    background-color: rgb(253, 194, 253);
+    color: rgb(2, 2, 117);
+}
