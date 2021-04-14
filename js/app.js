@@ -10,6 +10,10 @@ let f2Index;
 let f3Index;
 let maxAttempts = 25;
 let Attempts = 0;
+let namesArry = [];
+let votesArry = [];
+let shownArry = [];
+
 products.allproducts = [];
 
 
@@ -20,8 +24,11 @@ function products(name, source) {
     this.occurre = 0;
 
     products.allproducts.push(this)
+    namesArry.push(this.name)
+
 
 }
+
 
 new products('bag', 'imgs/bag.jpg');
 new products('banana', 'imgs/banana.jpg');
@@ -49,16 +56,22 @@ function generateRandomIndex() {
 
     return Math.floor(Math.random() * products.allproducts.length);
 }
+let shownPics = [];
 
 function renderthreeImages() {
     f1Index = generateRandomIndex();
     f2Index = generateRandomIndex();
     f3Index = generateRandomIndex();
 
-    while (f1Index === f2Index || f1Index === f3Index || f2Index === f3Index) {
+    while (f1Index === f2Index || f1Index === f3Index || f2Index === f3Index || shownPics.includes(f1Index) || shownPics.includes(f2Index) || shownPics.includes(f3Index)) {
+        f1Index = generateRandomIndex();
         f2Index = generateRandomIndex();
         f3Index = generateRandomIndex();
     }
+    shownPics = [];
+    //shownPics=[f1Index,f2Index,f3Index];
+    shownPics.push(f1Index, f2Index, f3Index);
+
 
     img1.src = products.allproducts[f1Index].source;
     products.allproducts[f1Index].occurre++;
@@ -68,9 +81,10 @@ function renderthreeImages() {
     products.allproducts[f3Index].occurre++;
 }
 
+
 renderthreeImages();
 
-imagdiv.addEventListener('click',UserClick);
+imagdiv.addEventListener('click', UserClick);
 /*img1.addEventListener('click', UserClick);
 img2.addEventListener('click', UserClick);
 img3.addEventListener('click', UserClick);*/
@@ -86,7 +100,9 @@ function finalresult(event) {
         list.appendChild(productsResult);
 
     }
-    button.removeEventListener('click',finalresult);
+    chart();
+
+    button.removeEventListener('click', finalresult);
 }
 
 function UserClick(event) {
@@ -104,26 +120,85 @@ function UserClick(event) {
         }
         else if (event.target.id === 'p3') {
             products.allproducts[f3Index].votes++;
-        } else{
+        } else {
             alert('please you have to click on the images for voting');
             Attempts--;
+
+
         }
+
+
         renderthreeImages();
 
 
+
+
+
     } else {
+
+
+
+
         results.appendChild(button);
-        button.textContent= 'show the results';
-        button.addEventListener('click',finalresult);
-        imagdiv.removeEventListener('click', UserClick)
-        /*img1.removeEventListener('click', UserClick);
-        img2.removeEventListener('click', UserClick);
-        img3.removeEventListener('click', UserClick);*/
-        
+        button.textContent = 'show the results';
+        button.addEventListener('click', finalresult);
+        imagdiv.removeEventListener('click', UserClick);
+
+        for (let i = 0; i < products.allproducts.length; i++) {
+            votesArry.push(products.allproducts[i].votes);
+            shownArry.push(products.allproducts[i].occurre);
+
+
+
+            /*img1.removeEventListener('click', UserClick);
+            img2.removeEventListener('click', UserClick);
+            img3.removeEventListener('click', UserClick);*/
+
+        }
+        chart();
+
+
     }
-    
 
 }
 
+/*########################################### Chart ###########################################*/
 
 
+
+function chart() {
+    let ctx = document.getElementById('myChart').getContext('2d');
+
+    let chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: namesArry,
+            datasets: [
+                {
+                    label: "votes",
+                    fill: true,
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "red",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "red",
+                    data: votesArry
+                }, {
+                    label: "shown",
+                    fill: true,
+                    backgroundColor: "rgba(255,99,132,0.2)",
+                    borderColor: "darkgreen",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "green",
+                    data: shownArry
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'result of products voating system'
+            }
+        }
+    });
+
+}

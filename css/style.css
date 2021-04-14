@@ -1,20 +1,20 @@
 #p1{
-    width:  380px;
-    height: 380px;
+    width:  250px;
+    height: 250px;
     object-fit: cover;
 }
 #p2{
-    width:  380px;
-    height: 380px;
+    width:  250px;
+    height: 250px;
     object-fit: cover;
 }
 #p3{
-    width:  380px;
-    height: 380px;
+    width:  250px;
+    height: 250px;
     object-fit: cover;
 }
 body{
-    background-image: url('/imgs/background.jpeg');
+    background-color: lightblue;
     margin: 2%;
 }
 main p {
@@ -33,18 +33,18 @@ main ul li {
     /*background-color: rgb(116, 192, 240);*/
     font-weight: bold;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    color: rgb(51, 224, 255);
+    color: rgb(15, 134, 4);
 }
 main ul {
     float: left;
     margin-top: 2%;
 }
-footer{
+footer p{
     color:rgb(2, 2, 117);
     background-color: rgb(152, 236, 251);
     text-align: center;
-    margin-top: 45%;
-   height: 25%;
+    margin-top: 37%;
+
 
 }
 button {
