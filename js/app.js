@@ -1,6 +1,6 @@
 `use strict`
 
-//let imagdiv = document.getElementById('imags');
+let imagdiv = document.getElementById('imags');
 let img1 = document.getElementById('p1');
 let img2 = document.getElementById('p2');
 let img3 = document.getElementById('p3');
@@ -8,7 +8,7 @@ let button = document.createElement('button')
 let f1Index;
 let f2Index;
 let f3Index;
-let maxAttempts = 25;
+let maxAttempts = 3;
 let Attempts = 0;
 products.allproducts = [];
 
@@ -70,9 +70,10 @@ function renderthreeImages() {
 
 renderthreeImages();
 
-img1.addEventListener('click', UserClick);
+imagdiv.addEventListener('click',UserClick);
+/*img1.addEventListener('click', UserClick);
 img2.addEventListener('click', UserClick);
-img3.addEventListener('click', UserClick);
+img3.addEventListener('click', UserClick);*/
 
 function finalresult(event) {
     let list = document.getElementById('results');
@@ -101,8 +102,11 @@ function UserClick(event) {
         else if (event.target.id === 'p2') {
             products.allproducts[f2Index].votes++;
         }
-        else {
+        else if (event.target.id === 'p3') {
             products.allproducts[f3Index].votes++;
+        } else{
+            alert('please you have to click on the images for voting');
+            Attempts--;
         }
         renderthreeImages();
 
@@ -111,9 +115,10 @@ function UserClick(event) {
         results.appendChild(button);
         button.textContent= 'show the results';
         button.addEventListener('click',finalresult);
-        img1.removeEventListener('click', UserClick);
+        imagdiv.removeEventListener('click', UserClick)
+        /*img1.removeEventListener('click', UserClick);
         img2.removeEventListener('click', UserClick);
-        img3.removeEventListener('click', UserClick);
+        img3.removeEventListener('click', UserClick);*/
         
     }
     
