@@ -126,6 +126,7 @@ function UserClick(event) {
 
 
         }
+        updateStorage();
 
 
         renderthreeImages();
@@ -202,3 +203,20 @@ function chart() {
     });
 
 }
+//######################## adding local storage ##########################
+
+function updateStorage() {
+    let arrSteing=JSON.stringify(products.allproducts)
+    localStorage.setItem('VS',arrSteing);
+    
+}
+function getlocalStorage() {
+    let data = localStorage.getItem('VS');
+    let vdata = JSON.parse(data);
+    if (vdata!==null) {
+        products.allproducts= vdata;
+        
+    }
+    
+}
+getlocalStorage();
